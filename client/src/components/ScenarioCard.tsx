@@ -68,8 +68,6 @@ export default function ScenarioCard({
         setIsExpanded(!isExpanded);
       }}
     >
-      {/* Link a mapa */}
-      <a href={`/scenario/${scenario.id}`} className="absolute inset-0 z-50" />
       <div
         className={`relative h-full overflow-hidden bg-card rounded-lg ${borderColor} transition-all duration-500 hover:shadow-lg`}
         style={{
