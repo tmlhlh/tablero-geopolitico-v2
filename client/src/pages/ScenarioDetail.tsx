@@ -1,4 +1,4 @@
-import { useRoute } from 'wouter';
+import { Link, useRoute } from 'wouter';
 import { ArrowLeft } from 'lucide-react';
 import Header from '@/components/Header';
 import ScenarioMap from '@/components/ScenarioMap';
@@ -53,9 +53,9 @@ export default function ScenarioDetail() {
       <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Escenario no encontrado</h1>
-          <a href="/" className="text-primary hover:underline">
+          <Link href="/" className="text-primary hover:underline">
             Volver al inicio
-          </a>
+          </Link>
         </div>
       </div>
     );
@@ -98,13 +98,13 @@ export default function ScenarioDetail() {
 
       {/* Botón de Retorno - Esquina Superior Izquierda */}
       <div className="fixed top-24 left-6 z-40">
-        <a
+        <Link
           href="/"
           className="inline-flex items-center gap-2 text-primary hover:gap-3 transition-all font-mono text-xs uppercase tracking-wider px-4 py-2 rounded-lg border border-primary hover:bg-primary/10"
         >
           <ArrowLeft size={14} />
           Volver
-        </a>
+        </Link>
       </div>
     </div>
   );
