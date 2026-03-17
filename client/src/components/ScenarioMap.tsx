@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import AnalysisPanel from './AnalysisPanel';
+import { geopoliticalZones, zoneColors } from '@/data/geopolitical-zones';
 
 interface MapLayer {
   id: string;
@@ -23,6 +25,7 @@ export default function ScenarioMap({
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<L.Map | null>(null);
   const [layers, setLayers] = useState<MapLayer[]>([]);
+  const geoJsonLayers = useRef<L.GeoJSON[]>([]);
 
   // Definir capas por escenario
   const scenarioLayers: Record<string, MapLayer[]> = {
@@ -155,7 +158,10 @@ export default function ScenarioMap({
         }
       ).addTo(map.current);
 
-      // Agregar algunos marcadores de ejemplo según el escenario
+      // Agregar polígonos GeoJSON
+      addGeopoliticalZones(scenarioId);
+
+      // Agregar marcadores de ejemplo según el escenario
       addScenarioMarkers(scenarioId);
     }
 
@@ -167,6 +173,43 @@ export default function ScenarioMap({
       // Cleanup si es necesario
     };
   }, [scenarioId]);
+
+  const addGeopoliticalZones = (scenario: string) => {
+    if (!map.current) return;
+
+    const zones = geopoliticalZones[scenario as keyof typeof geopoliticalZones];
+    const colors = zoneColors[scenario as keyof typeof zoneColors];
+
+    if (!zones) return;
+
+    // Limpiar capas anteriores
+    geoJsonLayers.current.forEach((layer) => map.current?.removeLayer(layer));
+    geoJsonLayers.current = [];
+
+    const geoJsonLayer = L.geoJSON(zones as any, {
+      style: (feature) => {
+        const featureType = feature?.properties?.type;
+        const color = colors[featureType as keyof typeof colors] || '#00ff88';
+        return {
+          color: color,
+          weight: 2,
+          opacity: 0.6,
+          fillColor: color,
+          fillOpacity: 0.1,
+        };
+      },
+      onEachFeature: (feature, layer) => {
+        const props = feature.properties;
+        const popup = `<div style="color: #e0e0e0; font-family: monospace; font-size: 0.75rem;">
+          <strong>${props.name}</strong><br/>
+          ${props.description}
+        </div>`;
+        layer.bindPopup(popup);
+      },
+    }).addTo(map.current);
+
+    geoJsonLayers.current.push(geoJsonLayer);
+  };
 
   const addScenarioMarkers = (scenario: string) => {
     if (!map.current) return;
@@ -213,8 +256,6 @@ export default function ScenarioMap({
           <strong>${title}</strong><br/>
           ${description}
         </div>`);
-
-      // Efecto de brillo agregado mediante CSS
     });
   };
 
@@ -275,38 +316,15 @@ export default function ScenarioMap({
         />
       </div>
 
-      {/* Panel Derecho - Análisis */}
-      <div className="w-80 bg-card border-l border-border overflow-y-auto">
-        <div className="p-4 border-b border-border sticky top-0 bg-card/95 backdrop-blur">
+      {/* Panel Derecho - Análisis Completo */}
+      <div className="w-96 bg-card border-l border-border">
+        <div className="p-4 border-b border-border sticky top-0 bg-card/95 backdrop-blur z-10">
           <h3 className="text-sm font-bold uppercase tracking-wider text-secondary">
-            Análisis
+            Análisis del Escenario
           </h3>
         </div>
 
-        <div className="p-4 space-y-4">
-          <div className="neon-border p-3 rounded">
-            <p className="text-xs font-mono uppercase tracking-wider text-primary mb-2">
-              Elementos Activos
-            </p>
-            <p className="text-2xl font-bold" style={{ color: accentColor }}>
-              {layers.filter((l) => l.visible).length}
-            </p>
-          </div>
-
-          <div className="neon-border-cyan p-3 rounded">
-            <p className="text-xs font-mono uppercase tracking-wider text-secondary mb-2">
-              Capas Disponibles
-            </p>
-            <p className="text-2xl font-bold text-secondary">{layers.length}</p>
-          </div>
-
-          <div className="bg-background/50 p-3 rounded border border-border">
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              Usa los controles del mapa para explorar. Activa/desactiva capas en
-              el panel izquierdo para ver diferentes aspectos del escenario.
-            </p>
-          </div>
-        </div>
+        <AnalysisPanel scenarioId={scenarioId} accentColor={accentColor} />
       </div>
     </div>
   );
