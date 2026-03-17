@@ -268,17 +268,17 @@ export default function ScenarioMap({
   };
 
   return (
-    <div className="flex h-screen bg-background">
-      {/* Panel Izquierdo - Capas */}
-      <div className="w-64 bg-card border-r border-border overflow-y-auto">
-        <div className="p-4 border-b border-border sticky top-0 bg-card/95 backdrop-blur">
+    <div className="flex h-screen bg-background w-full overflow-hidden">
+      {/* Panel Izquierdo - Capas (Oculto en móvil, visible en md+) */}
+      <div className="hidden md:flex md:w-56 lg:w-64 bg-card border-r border-border flex-col overflow-hidden">
+        <div className="p-4 border-b border-border bg-card/95 backdrop-blur flex-shrink-0">
           <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-2">
             Capas
           </h3>
-          <p className="text-xs text-muted-foreground">{scenarioTitle}</p>
+          <p className="text-xs text-muted-foreground truncate">{scenarioTitle}</p>
         </div>
 
-        <div className="p-4 space-y-3">
+        <div className="p-4 space-y-3 overflow-y-auto flex-1">
           {layers.map((layer) => (
             <label
               key={layer.id}
@@ -288,10 +288,10 @@ export default function ScenarioMap({
                 type="checkbox"
                 checked={layer.visible}
                 onChange={() => toggleLayer(layer.id)}
-                className="w-4 h-4 rounded cursor-pointer"
+                className="w-4 h-4 rounded cursor-pointer flex-shrink-0"
               />
-              <div className="flex-1">
-                <p className="text-xs font-mono uppercase tracking-wider group-hover:text-primary transition-colors">
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-mono uppercase tracking-wider group-hover:text-primary transition-colors truncate">
                   {layer.name}
                 </p>
                 <div
@@ -308,23 +308,25 @@ export default function ScenarioMap({
       </div>
 
       {/* Mapa Central */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col min-w-0">
         <div
           ref={mapContainer}
-          className="flex-1"
-          style={{ minHeight: '100%' }}
+          className="flex-1 w-full"
+          style={{ minHeight: 0 }}
         />
       </div>
 
-      {/* Panel Derecho - Análisis Completo */}
-      <div className="w-96 bg-card border-l border-border">
-        <div className="p-4 border-b border-border sticky top-0 bg-card/95 backdrop-blur z-10">
+      {/* Panel Derecho - Análisis Completo (Oculto en móvil/tablet, visible en lg+) */}
+      <div className="hidden lg:flex lg:w-80 xl:w-96 bg-card border-l border-border flex-col overflow-hidden">
+        <div className="p-4 border-b border-border bg-card/95 backdrop-blur flex-shrink-0">
           <h3 className="text-sm font-bold uppercase tracking-wider text-secondary">
             Análisis del Escenario
           </h3>
         </div>
 
-        <AnalysisPanel scenarioId={scenarioId} accentColor={accentColor} />
+        <div className="flex-1 overflow-y-auto">
+          <AnalysisPanel scenarioId={scenarioId} accentColor={accentColor} />
+        </div>
       </div>
     </div>
   );
