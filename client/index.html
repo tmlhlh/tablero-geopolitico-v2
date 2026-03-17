@@ -6,21 +6,24 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Tablero Geopolítico: El Mundo Pos-Dólar</title>    
-    <!-- THIS IS THE START OF A COMMENT BLOCK, BLOCK TO BE DELETED: Google Fonts here, example:
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    THIS IS THE END OF A COMMENT BLOCK, BLOCK TO BE DELETED -->
-  </head>
+    <title>Tablero Geopol    <title>Tablero Geopolítico: El Mundo Pos-Dólar</title>
+    <meta name="description" content="Análisis prospectivo de escenarios geopolíticos para la próxima década basado en la fragmentación del sistema financiero internacional." />
+    <meta name="theme-color" content="#0a0e27" /></head>
 
-  <body>
+  <body class="dark">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="https://d2xsxph8kpxj0f.cloudfront.net/310519663381802769/FDNJGFx97MLuc4QvHGeCrs/hero-geopolitical-map-4eNZQuVcDYCHZ7fZumCV5z.webp" />
     <script
       defer
       src="%VITE_ANALYTICS_ENDPOINT%/umami"
       data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+    <!-- Prevent layout shift -->
+    <style>
+      body { margin: 0; padding: 0; }
+      #root { display: flex; flex-direction: column; min-height: 100vh; }
+    </style>
   </body>
 
 </html>

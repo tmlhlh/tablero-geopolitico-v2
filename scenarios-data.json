@@ -1,0 +1,174 @@
+{
+  "scenarios": [
+    {
+      "id": "blindaje",
+      "number": "01",
+      "title": "EL BLINDAJE",
+      "subtitle": "La Fortaleza Occidental",
+      "description": "El hegemón no colapsa ni cede el control, sino que responde a la fragmentación replegándose y consolidando un bloque cerrado.",
+      "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663381802769/FDNJGFx97MLuc4QvHGeCrs/scenario-blindaje-8EDaGvwKjTTubJbax8SyHu.webp",
+      "cost": "La soberanía",
+      "mainTheme": "El sistema financiero (SWIFT) deja de ser un bien público global para convertirse en una herramienta punitiva.",
+      "keyPoints": [
+        {
+          "title": "La Armafización",
+          "description": "Congelamientos masivos fuerzan a los no-alineados a elegir entre disciplina financiera occidental o la expulsión del sistema."
+        },
+        {
+          "title": "El Dilema Argentino",
+          "description": "La presión por un alineamiento incondicional al bloque SWIFT amenaza directamente la arquitectura de reservas del BCRA."
+        },
+        {
+          "title": "Project Vault",
+          "description": "Iniciativa de seguridad nacional estadounidense con $12.000 millones para mitigar choques de suministro de minerales críticos."
+        }
+      ],
+      "indicators": {
+        "dollarHegemony": 85.0,
+        "systemicRisk": "SISTEMÁTICO",
+        "probability": "30-35%"
+      },
+      "consequences": [
+        "Bloque cerrado comercial controlado por Washington",
+        "Neutralidad imposible - alineamiento absoluto requerido",
+        "Pérdida de autonomía para países periféricos",
+        "Fragmentación de alianzas europeas"
+      ],
+      "signals": [
+        "Victoria de candidato aislacionista-agresivo en 2028",
+        "Anuncio de acuerdo comercial full OTAN con cláusulas anti-China",
+        "Condicionalidad del FMI atada a alineamiento estratégico"
+      ]
+    },
+    {
+      "id": "fractura",
+      "number": "02",
+      "title": "LA FRACTURA",
+      "subtitle": "Multipolaridad Negociada",
+      "description": "La pérdida de hegemonía se resuelve a través de una pluralidad de infraestructuras financieras que coexisten sin lograr hegemonía plena.",
+      "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663381802769/FDNJGFx97MLuc4QvHGeCrs/scenario-fractura-hR3ux9R56QTPRgZ9ys3Lcf.webp",
+      "cost": "La incertidumbre",
+      "mainTheme": "Emerge un vacío de poder ocupado por potencias medias, como países europeos y no alineados del sur global.",
+      "keyPoints": [
+        {
+          "title": "Autonomía Estratégica Europea",
+          "description": "Europa profundiza autonomía a través de ReArmar Europa, movilizando 800.000 millones de euros para defensa."
+        },
+        {
+          "title": "Bimodalidad Financiera",
+          "description": "Coexisten SWIFT/Ágora para Occidente y mBridge para BRICS+, comunicándose a través de terceros países."
+        },
+        {
+          "title": "Oportunidad para Potencias Medias",
+          "description": "Argentina y otros actores pueden actuar como árbitros entre bloques, maximizando inversiones de múltiples fuentes."
+        }
+      ],
+      "indicators": {
+        "dollarHegemony": 56.92,
+        "systemicRisk": "FRAGMENTADO",
+        "probability": "50-60%"
+      },
+      "consequences": [
+        "Múltiples infraestructuras financieras coexistiendo",
+        "Oportunidades de arbitraje para potencias medias",
+        "Necesidad de diplomacia de múltiples infraestructuras",
+        "Riesgo de sanciones secundarias"
+      ],
+      "signals": [
+        "Negativa de aliados OTAN a participar en operaciones estadounidenses",
+        "Inversión europea masiva en defensa independiente",
+        "Acuerdos comerciales entre bloques sin exclusividad"
+      ]
+    },
+    {
+      "id": "abismo",
+      "number": "03",
+      "title": "EL ABISMO",
+      "subtitle": "Colapso Sistémico",
+      "description": "Ruptura simultánea de hegemonía, confianza y liquidez, llevando a reconfiguración brusca sin ancla estable.",
+      "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663381802769/FDNJGFx97MLuc4QvHGeCrs/scenario-abismo-KvsSfE8Xvf9YdUq8FFNY5e.webp",
+      "cost": "La supervivencia",
+      "mainTheme": "Ninguna divisa es capaz de afrontar la posición de moneda fiduciaria internacional, desintegrando el concepto mismo.",
+      "keyPoints": [
+        {
+          "title": "Trampa de Kindleberger",
+          "description": "Ausencia de liderazgo hegemónico provoca caos global, cierre de economías y carrera de devaluación."
+        },
+        {
+          "title": "Fuga a Activos Físicos",
+          "description": "Estados se vuelcan masivamente a oro y activos físicos para resguardo de valor, buscando soberanía y anonimato."
+        },
+        {
+          "title": "Riesgo Existencial para Periferias",
+          "description": "Recursos sin defensa se convierten en vulnerabilidades - litio, cobre, gas y alimentos son botín de potencias."
+        }
+      ],
+      "indicators": {
+        "dollarHegemony": 0,
+        "systemicRisk": "COLAPSO TOTAL",
+        "probability": "5-10%"
+      },
+      "consequences": [
+        "Desintegración del sistema económico-financiero global",
+        "Nacionalización unilateral de activos extranjeros",
+        "Intervenciones militares por recursos estratégicos",
+        "Desaparición de marcos jurídicos internacionales"
+      ],
+      "signals": [
+        "Abandono definitivo de la OMC",
+        "Aumento de escaramuzas navales en corredores marítimos críticos",
+        "Nacionalización de activos extranjeros en Sur Global",
+        "Compras masivas de oro por bancos centrales (863 toneladas en 2025)"
+      ]
+    },
+    {
+      "id": "superposicion",
+      "number": "04",
+      "title": "LA SUPERPOSICIÓN",
+      "subtitle": "Realidades Coexistentes",
+      "description": "Múltiples sistemas financieros y políticos operan simultáneamente sin resolución clara, creando ambigüedad estratégica.",
+      "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663381802769/FDNJGFx97MLuc4QvHGeCrs/scenario-superposicion-KqXhWfDwbvMS3k2rLw52FL.webp",
+      "cost": "La claridad",
+      "mainTheme": "Estados y actores operan en múltiples realidades simultáneamente, adaptándose dinámicamente a contextos cambiantes.",
+      "keyPoints": [
+        {
+          "title": "Ambigüedad Estratégica",
+          "description": "Actores mantienen opciones abiertas, evitando compromisos exclusivos con cualquier bloque."
+        },
+        {
+          "title": "Infraestructuras Superpuestas",
+          "description": "SWIFT, mBridge, CIPS y otros sistemas operan en paralelo, con actores seleccionando según conveniencia."
+        },
+        {
+          "title": "Volatilidad Permanente",
+          "description": "Sin ancla clara, los mercados fluctúan según percepciones y eventos, creando oportunidades y riesgos constantes."
+        }
+      ],
+      "indicators": {
+        "dollarHegemony": 40,
+        "systemicRisk": "INDETERMINADO",
+        "probability": "35-45%"
+      },
+      "consequences": [
+        "Incertidumbre permanente en mercados financieros",
+        "Necesidad de adaptabilidad constante",
+        "Oportunidades para actores ágiles",
+        "Riesgo de cascadas de decisiones impredecibles"
+      ],
+      "signals": [
+        "Alternancia de políticas según cambios de gobierno",
+        "Empresas operando en múltiples sistemas de pago",
+        "Volatilidad extrema en mercados de divisas y commodities",
+        "Alianzas fluidas y no permanentes"
+      ]
+    }
+  ],
+  "context": {
+    "title": "Prospectiva Estratégica",
+    "subtitle": "Simulador de Riesgo: El Orden Pos-Yeda",
+    "description": "Análisis de escenarios geopolíticos para la próxima década basado en la fragmentación del sistema financiero internacional y la reconfiguración del poder global.",
+    "author": "Análisis de Prospectiva Estratégica",
+    "date": "2026",
+    "heroImage": "https://d2xsxph8kpxj0f.cloudfront.net/310519663381802769/FDNJGFx97MLuc4QvHGeCrs/hero-geopolitical-map-4eNZQuVcDYCHZ7fZumCV5z.webp"
+  }
+}
