@@ -3,6 +3,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import AnalysisPanel from './AnalysisPanel';
 import { geopoliticalZones, zoneColors } from '@/data/geopolitical-zones';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface MapLayer {
   id: string;
@@ -25,6 +26,8 @@ export default function ScenarioMap({
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<L.Map | null>(null);
   const [layers, setLayers] = useState<MapLayer[]>([]);
+  const [showLeftPanel, setShowLeftPanel] = useState(true);
+  const [showRightPanel, setShowRightPanel] = useState(true);
   const geoJsonLayers = useRef<L.GeoJSON[]>([]);
 
   // Definir capas por escenario
@@ -163,6 +166,11 @@ export default function ScenarioMap({
 
       // Agregar marcadores de ejemplo según el escenario
       addScenarioMarkers(scenarioId);
+
+      // Trigger resize para que Leaflet se adapte
+      setTimeout(() => {
+        map.current?.invalidateSize();
+      }, 100);
     }
 
     // Cargar capas del escenario
@@ -269,8 +277,12 @@ export default function ScenarioMap({
 
   return (
     <div className="flex h-screen bg-background w-full overflow-hidden">
-      {/* Panel Izquierdo - Capas (Oculto en móvil, visible en md+) */}
-      <div className="hidden md:flex md:w-56 lg:w-64 bg-card border-r border-border flex-col overflow-hidden">
+      {/* Panel Izquierdo - Capas */}
+      <div
+        className={`bg-card border-r border-border flex flex-col transition-all duration-300 ${
+          showLeftPanel ? 'w-56 lg:w-64' : 'w-0'
+        } overflow-hidden`}
+      >
         <div className="p-4 border-b border-border bg-card/95 backdrop-blur flex-shrink-0">
           <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-2">
             Capas
@@ -307,17 +319,45 @@ export default function ScenarioMap({
         </div>
       </div>
 
+      {/* Botón Toggle Panel Izquierdo */}
+      <button
+        onClick={() => setShowLeftPanel(!showLeftPanel)}
+        className="w-8 h-8 flex items-center justify-center bg-card border-r border-border hover:bg-background/50 transition-colors flex-shrink-0"
+      >
+        {showLeftPanel ? (
+          <ChevronLeft size={16} className="text-primary" />
+        ) : (
+          <ChevronRight size={16} className="text-primary" />
+        )}
+      </button>
+
       {/* Mapa Central */}
       <div className="flex-1 flex flex-col min-w-0">
         <div
           ref={mapContainer}
-          className="flex-1 w-full"
+          className="flex-1 w-full bg-background"
           style={{ minHeight: 0 }}
         />
       </div>
 
-      {/* Panel Derecho - Análisis Completo (Oculto en móvil/tablet, visible en lg+) */}
-      <div className="hidden lg:flex lg:w-80 xl:w-96 bg-card border-l border-border flex-col overflow-hidden">
+      {/* Botón Toggle Panel Derecho */}
+      <button
+        onClick={() => setShowRightPanel(!showRightPanel)}
+        className="w-8 h-8 flex items-center justify-center bg-card border-l border-border hover:bg-background/50 transition-colors flex-shrink-0"
+      >
+        {showRightPanel ? (
+          <ChevronRight size={16} className="text-secondary" />
+        ) : (
+          <ChevronLeft size={16} className="text-secondary" />
+        )}
+      </button>
+
+      {/* Panel Derecho - Análisis Completo */}
+      <div
+        className={`bg-card border-l border-border flex flex-col transition-all duration-300 ${
+          showRightPanel ? 'w-72 lg:w-80 xl:w-96' : 'w-0'
+        } overflow-hidden`}
+      >
         <div className="p-4 border-b border-border bg-card/95 backdrop-blur flex-shrink-0">
           <h3 className="text-sm font-bold uppercase tracking-wider text-secondary">
             Análisis del Escenario
