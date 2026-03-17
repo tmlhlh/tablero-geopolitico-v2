@@ -152,8 +152,13 @@ function vitePluginManusDebugCollector(): Plugin {
 
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
 
+const isGithubActions = process.env.GITHUB_ACTIONS === "true";
+const githubPagesBase = "/tablero-geopolitico-v2/";
+
+
 export default defineConfig({
   plugins,
+  base: process.env.VITE_BASE_PATH || (isGithubActions ? githubPagesBase : "/"),
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
