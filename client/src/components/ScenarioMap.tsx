@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useParams } from 'wouter';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import AnalysisPanel from './AnalysisPanel';
@@ -19,10 +20,14 @@ interface ScenarioMapProps {
 }
 
 export default function ScenarioMap({
-  scenarioId,
+  scenarioId: initialScenarioId,
   scenarioTitle,
   accentColor,
 }: ScenarioMapProps) {
+  const params = useParams();
+  const urlScenarioId = params?.id as string;
+  const scenarioId = urlScenarioId || initialScenarioId;
+  
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<L.Map | null>(null);
   const [layers, setLayers] = useState<MapLayer[]>([]);

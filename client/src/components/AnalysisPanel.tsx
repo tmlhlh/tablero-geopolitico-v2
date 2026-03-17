@@ -30,7 +30,8 @@ export default function AnalysisPanel({
   };
 
   return (
-    <div className="h-full overflow-y-auto space-y-4 pb-4">
+    <div className="h-full bg-background z-40 flex flex-col">
+      <div className="flex-1 overflow-y-auto space-y-4 pb-4 px-4 pt-4">
       {/* Índice de Volatilidad */}
       <div className="border border-border rounded-lg overflow-hidden">
         <button
@@ -206,6 +207,7 @@ export default function AnalysisPanel({
             <EventTimeline scenarioId={scenarioId} />
           </div>
         )}
+      </div>
       </div>
     </div>
   );
