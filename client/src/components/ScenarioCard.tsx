@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'wouter';
 import { ChevronDown } from 'lucide-react';
 
 interface Indicator {
@@ -68,8 +69,6 @@ export default function ScenarioCard({
         setIsExpanded(!isExpanded);
       }}
     >
-      {/* Link a mapa */}
-      <a href={`/scenario/${scenario.id}`} className="absolute inset-0 z-50" />
       <div
         className={`relative h-full overflow-hidden bg-card rounded-lg ${borderColor} transition-all duration-500 hover:shadow-lg`}
         style={{
@@ -196,14 +195,14 @@ export default function ScenarioCard({
                 }`}
               />
             </button>
-            <a
+            <Link
               href={`/scenario/${scenario.id}`}
               className="text-xs font-mono uppercase tracking-wider px-3 py-2 border border-current rounded hover:bg-current hover:text-background transition-all"
               style={{ color: accentColor }}
               onClick={(e) => e.stopPropagation()}
             >
               Mapa
-            </a>
+            </Link>
           </div>
         </div>
       </div>
