@@ -68,6 +68,8 @@ export default function ScenarioCard({
         setIsExpanded(!isExpanded);
       }}
     >
+      {/* Link a mapa */}
+      <a href={`/scenario/${scenario.id}`} className="absolute inset-0 z-50" />
       <div
         className={`relative h-full overflow-hidden bg-card rounded-lg ${borderColor} transition-all duration-500 hover:shadow-lg`}
         style={{
@@ -176,19 +178,33 @@ export default function ScenarioCard({
             </div>
           </div>
 
-          {/* Expand Button */}
-          <button
-            className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider transition-all duration-300 hover:gap-3"
-            style={{ color: accentColor }}
-          >
-            {isExpanded ? 'Ocultar Detalles' : 'Ver Detalles'}
-            <ChevronDown
-              size={16}
-              className={`transition-transform duration-300 ${
-                isExpanded ? 'rotate-180' : ''
-              }`}
-            />
-          </button>
+          {/* Expand Button + Map Link */}
+          <div className="flex items-center gap-2">
+            <button
+              className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider transition-all duration-300 hover:gap-3 flex-1"
+              style={{ color: accentColor }}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsExpanded(!isExpanded);
+              }}
+            >
+              {isExpanded ? 'Ocultar Detalles' : 'Ver Detalles'}
+              <ChevronDown
+                size={16}
+                className={`transition-transform duration-300 ${
+                  isExpanded ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+            <a
+              href={`/scenario/${scenario.id}`}
+              className="text-xs font-mono uppercase tracking-wider px-3 py-2 border border-current rounded hover:bg-current hover:text-background transition-all"
+              style={{ color: accentColor }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              Mapa
+            </a>
+          </div>
         </div>
       </div>
 

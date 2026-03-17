@@ -1,10 +1,7 @@
 import { useRoute } from 'wouter';
 import { ArrowLeft } from 'lucide-react';
 import Header from '@/components/Header';
-
-interface ScenarioDetailProps {
-  scenarioId: string;
-}
+import ScenarioMap from '@/components/ScenarioMap';
 
 export default function ScenarioDetail() {
   const [, params] = useRoute('/scenario/:id');
@@ -65,124 +62,50 @@ export default function ScenarioDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Header />
 
-      {/* Hero Section */}
-      <div
-        className="relative w-full h-96 overflow-hidden mt-16"
-        style={{
-          backgroundImage: `url(${scenario.image})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background" />
+      {/* Mapa Interactivo - Elemento Central */}
+      <div className="flex-1 mt-16">
+        <ScenarioMap
+          scenarioId={scenarioId || 'blindaje'}
+          scenarioTitle={scenario.title}
+          accentColor={scenario.color}
+        />
+      </div>
 
-        <div className="relative h-full flex flex-col items-center justify-center px-4 z-10">
+      {/* Información Flotante - Esquina Inferior Izquierda */}
+      <div className="fixed bottom-6 left-6 z-40 max-w-xs">
+        <div
+          className="p-4 rounded-lg border-2 backdrop-blur-md bg-background/80"
+          style={{
+            borderColor: scenario.color,
+            boxShadow: `0 0 20px ${scenario.color}40`,
+          }}
+        >
           <p
-            className="text-sm font-mono uppercase tracking-widest mb-4"
+            className="text-xs font-mono uppercase tracking-widest mb-2"
             style={{ color: scenario.color }}
           >
-            {scenario.number}
+            {scenario.number} • {scenario.subtitle}
           </p>
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-center">
-            {scenario.title}
-          </h1>
-          <p className="text-xl text-foreground/80 font-mono">{scenario.subtitle}</p>
+          <h3 className="text-lg font-bold mb-2">{scenario.title}</h3>
+          <p className="text-xs text-foreground/70 leading-relaxed">
+            {scenario.description}
+          </p>
         </div>
       </div>
 
-      {/* Content Section */}
-      <section className="py-20 px-4 md:px-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Back Button */}
-          <a
-            href="/"
-            className="inline-flex items-center gap-2 text-primary hover:gap-3 transition-all mb-8 font-mono text-sm uppercase tracking-wider"
-          >
-            <ArrowLeft size={16} />
-            Volver a Escenarios
-          </a>
-
-          {/* Main Content */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {/* Main Description */}
-            <div className="md:col-span-2">
-              <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Descripción General</h2>
-                <p className="text-lg text-foreground/80 leading-relaxed">
-                  {scenario.description}
-                </p>
-              </div>
-
-              <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Análisis Detallado</h2>
-                <p className="text-foreground/80 leading-relaxed">
-                  Este escenario representa una de las trayectorias posibles del orden
-                  geopolítico global en la próxima década. Su probabilidad y consecuencias
-                  dependen de múltiples factores sistémicos, decisiones políticas y eventos
-                  contingentes que aún no se han materializado.
-                </p>
-              </div>
-            </div>
-
-            {/* Sidebar */}
-            <div>
-              <div
-                className="p-6 rounded-lg border-2 mb-6"
-                style={{
-                  borderColor: scenario.color,
-                  boxShadow: `0 0 20px ${scenario.color}40`,
-                }}
-              >
-                <h3 className="text-sm font-mono uppercase tracking-wider mb-4">
-                  Costo Estratégico
-                </h3>
-                <p
-                  className="text-2xl font-bold"
-                  style={{ color: scenario.color }}
-                >
-                  {scenario.cost}
-                </p>
-              </div>
-
-              <div className="p-6 rounded-lg bg-card border border-border">
-                <h3 className="text-sm font-mono uppercase tracking-wider mb-4">
-                  Información
-                </h3>
-                <div className="space-y-3 text-sm">
-                  <div>
-                    <p className="text-muted-foreground mb-1">Escenario</p>
-                    <p className="font-bold">{scenario.number}</p>
-                  </div>
-                  <div>
-                    <p className="text-muted-foreground mb-1">Tipo</p>
-                    <p className="font-bold">{scenario.subtitle}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="text-center py-12 border-t border-border">
-            <p className="text-foreground/70 mb-6">
-              Explora los otros escenarios para una visión completa del panorama
-              geopolítico
-            </p>
-            <a
-              href="/#scenarios"
-              className="inline-block px-8 py-3 border-2 border-primary text-primary font-mono font-bold uppercase text-sm tracking-wider hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-              style={{
-                boxShadow: `0 0 10px ${scenario.color}`,
-              }}
-            >
-              Ver Todos los Escenarios
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* Botón de Retorno - Esquina Superior Izquierda */}
+      <div className="fixed top-24 left-6 z-40">
+        <a
+          href="/"
+          className="inline-flex items-center gap-2 text-primary hover:gap-3 transition-all font-mono text-xs uppercase tracking-wider px-4 py-2 rounded-lg border border-primary hover:bg-primary/10"
+        >
+          <ArrowLeft size={14} />
+          Volver
+        </a>
+      </div>
     </div>
   );
 }
